@@ -21,9 +21,10 @@ class FindRecipe extends React.Component {
                     <button>Search</button>
                 </form>
 
-                <button onClick={this.getRandomRecipie}>Get random recipie</button>
+                <button onClick={this.getRandomRecipe}>Get random recipe</button>
 
                 <p>{this.state.recipes[0]}</p>
+                <p>{this.state.recipes[2]}</p>
             </div>
         )
     }
@@ -36,13 +37,14 @@ class FindRecipe extends React.Component {
         const url = `https://api.spoonacular.com/recipes/findByIngredients?${this.state.criteria[0]}`
     }
 
-    getRandomRecipie = () => {
+    getRandomRecipe = () => {
         // GET 'https://api.spoonacular.com/recipes/random'
         console.log(process.env)
         axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOON_API_KEY}`)
             .then((response) => {
+                console.log(response.data.recipes[0])
                 console.log(response.data.recipes[0].title)
-                this.setState({"recipes": [response.data.recipes[0].title, response.data.recipes[0].id, response.data.recipes[0].analyzedInstructions]})
+                this.setState({"recipes": [response.data.recipes[0].title, response.data.recipes[0].id, response.data.recipes[0].instructions]})
             })
             .catch((error) => {
                 console.log(error)
