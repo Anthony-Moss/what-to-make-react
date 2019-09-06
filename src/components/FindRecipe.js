@@ -1,5 +1,5 @@
 import React from 'react';
-const axios = require('axios');
+const Axios = require('axios');
 
 class FindRecipe extends React.Component {
     constructor(props) {
@@ -16,11 +16,9 @@ class FindRecipe extends React.Component {
         return (
             <div>
                 <h1>Search recipes</h1>
-                <form id="recipe-search-form" onSubmit={this.search}>
-                    <input name="criteria" placeholder="Search by Ingredients" value={this.state.criteria} onChange={this.handleChange}></input>
-                    <button>Search</button>
-                </form>
-
+                
+                <input type='text' name="criteria" placeholder="Search by Ingredients" value={this.state.criteria} onChange={this.handleChange}></input>
+                <input type="submit" value="Search" onClick={this.search}/>
                 <button onClick={this.getRandomRecipe}>Get random recipe</button>
 
                 <p>{this.state.recipes[0]}</p>
@@ -33,14 +31,39 @@ class FindRecipe extends React.Component {
         this.setState({[event.target.name]: [event.target.value]});
     }
 
-    search = () => {
-        const url = `https://api.spoonacular.com/recipes/findByIngredients?${this.state.criteria[0]}`
+    search = async (e) => {
+        console.log(e, this.state.criteria[0])
+        try {
+            const response = await Axios({
+                                method: 'GET',
+                                url: `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&&ingredients=${this.state.criteria[0]}`
+                            })
+            console.log(response)
+            // this.setState({
+            //     ...this.state
+            //     // 'recipes': [response.data.recipes[0]] 
+            // })
+        } catch (error) {
+            alert(error)
+            console.log(error);
+        }
     }
+    // Axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SPOON_API_KEY}${this.state.criteria[0]}`)
+    //         .then((response) => {
+    //             console.log(response.data)
+    //             this.setState({
+    //                 'recipes': [response.data.recipes[0]] 
+    //             })
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // }
 
     getRandomRecipe = () => {
         // GET 'https://api.spoonacular.com/recipes/random'
         console.log(process.env)
-        axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOON_API_KEY}`)
+        Axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOON_API_KEY}`)
             .then((response) => {
                 console.log(response.data.recipes[0])
                 console.log(response.data.recipes[0].title)
