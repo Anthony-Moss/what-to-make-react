@@ -16,7 +16,7 @@ class FindRecipe extends React.Component {
         return (
             <div>
                 <h1>Search recipes</h1>
-                
+
                 <input type='text' name="criteria" placeholder="Search by Ingredients" value={this.state.criteria} onChange={this.handleChange}></input>
                 <input type="submit" value="Search" onClick={this.search}/>
                 <button onClick={this.getRandomRecipe}>Get random recipe</button>
@@ -31,34 +31,30 @@ class FindRecipe extends React.Component {
         this.setState({[event.target.name]: [event.target.value]});
     }
 
-    search = async (e) => {
-        console.log(e, this.state.criteria[0])
-        try {
-            const response = await Axios({
-                                method: 'GET',
-                                url: `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&&ingredients=${this.state.criteria[0]}`
-                            })
-            console.log(response)
-            // this.setState({
-            //     ...this.state
-            //     // 'recipes': [response.data.recipes[0]] 
-            // })
-        } catch (error) {
-            alert(error)
-            console.log(error);
+    search = async () => {
+        const recipes = localStorage.getItem('currentRecipes')
+        console.log(recipes.length)
+        if (recipes.length === 0) {
+            try {
+                const response = await Axios({
+                    method: 'GET',
+                    url: `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&&ingredients=${this.state.criteria[0]}`
+                })
+                console.log(response)
+                const recipeJSON = JSON.stringify(response.data)
+                localStorage.setItem('currentRecipes', localStorage.getItem('currentRecipes') + recipeJSON)
+            } catch (error) {
+                alert(error)
+                console.log(error);
+            }
         }
+        
+        const recipeData = JSON.parse(recipes)
+        console.log(recipeData)
+        console.log(localStorage.getItem('currentRecipes'))
+        
     }
-    // Axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_SPOON_API_KEY}${this.state.criteria[0]}`)
-    //         .then((response) => {
-    //             console.log(response.data)
-    //             this.setState({
-    //                 'recipes': [response.data.recipes[0]] 
-    //             })
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         })
-    // }
+    
 
     getRandomRecipe = () => {
         // GET 'https://api.spoonacular.com/recipes/random'
