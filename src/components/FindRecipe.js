@@ -43,6 +43,7 @@ class FindRecipe extends React.Component {
                 console.log(response)
                 const recipeJSON = JSON.stringify(response.data)
                 localStorage.setItem('currentRecipes', localStorage.getItem('currentRecipes') + recipeJSON)
+                this.setState({"recipes": [recipeJSON.recipes[0].title, response.data.recipes[0].id, response.data.recipes[0].instructions, response.data.recipes[0].image]})
             } catch (error) {
                 alert(error)
                 console.log(error);
@@ -63,7 +64,7 @@ class FindRecipe extends React.Component {
             .then((response) => {
                 console.log(response.data.recipes[0])
                 console.log(response.data.recipes[0].title)
-                this.setState({"recipes": [response.data.recipes[0].title, response.data.recipes[0].id, response.data.recipes[0].instructions]})
+                this.setState({"recipes": [response.data.recipes[0].title, response.data.recipes[0].id, response.data.recipes[0].instructions, response.data.recipes[0].image]})
             })
             .catch((error) => {
                 console.log(error)
