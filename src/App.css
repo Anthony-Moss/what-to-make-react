@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #D85A7FFF;
 }
 
 .Home-header {
@@ -27,7 +27,7 @@
 }
 
 .page-link {
-  color: #d6ed17;
+  color: #D85A7FFF;
 }
 
 .nav { 
