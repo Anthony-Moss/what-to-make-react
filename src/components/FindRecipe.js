@@ -19,7 +19,6 @@ class FindRecipe extends React.Component {
 
                 <input type='text' name="criteria" placeholder="Search by Ingredients" value={this.state.criteria} onChange={this.handleChange}></input>
                 <input type="submit" value="Search" onClick={this.search}/>
-                <button onClick={this.getRandomRecipe}>Get random recipe</button>
 
                 <p>{this.state.recipes[0]}</p>
                 <p>{this.state.recipes[2]}</p>
@@ -54,21 +53,6 @@ class FindRecipe extends React.Component {
         console.log(recipeData)
         console.log(localStorage.getItem('currentRecipes'))
         
-    }
-    
-
-    getRandomRecipe = () => {
-        // GET 'https://api.spoonacular.com/recipes/random'
-        console.log(process.env)
-        Axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOON_API_KEY}`)
-            .then((response) => {
-                console.log(response.data.recipes[0])
-                console.log(response.data.recipes[0].title)
-                this.setState({"recipes": [response.data.recipes[0].title, response.data.recipes[0].id, response.data.recipes[0].instructions, response.data.recipes[0].image]})
-            })
-            .catch((error) => {
-                console.log(error)
-            })
     }
 }
 
