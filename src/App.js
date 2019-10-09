@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import FindRecipe from './components/FindRecipe';
 import NavBar from './components/NavBar';
+import HomePage from './components/HomePage';
 
 function App() {
   let navLinks = ['Home', 'Search', 'Random']
@@ -11,15 +12,11 @@ function App() {
       <header className="Home-header">
         <h1>What To Make!</h1>
       
-        <NavBar data={navLinks}/>
-        {/* <FindRecipe /> */}
+        {/* <NavBar data={navLinks}/> */}
       
       </header>
-      <div>
-        <h2>Welcome to What To Make</h2>
-        <p>The website to help you decide what to cook!</p>
-        <h3>Stop Thinking Start Cooking!</h3>
-      </div>
+      <HomePage />
+      <FindRecipe />
     </div>
   );
 }
