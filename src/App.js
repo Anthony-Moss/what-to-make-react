@@ -3,6 +3,7 @@ import './App.css';
 import FindRecipe from './components/FindRecipe';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
+import RandomRecipe from './components/RandomRecipe';
 
 function App() {
   let navLinks = ['Home', 'Search', 'Random']
@@ -17,6 +18,7 @@ function App() {
       </header>
       <HomePage />
       <FindRecipe />
+      <RandomRecipe />
     </div>
   );
 }
