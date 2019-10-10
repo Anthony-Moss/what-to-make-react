@@ -16,9 +16,9 @@ function App() {
         {/* <NavBar data={navLinks}/> */}
       
       </header>
-      <HomePage />
+      {/* <HomePage /> */}
       <FindRecipe />
-      <RandomRecipe />
+      <RandomRecipe /> 
     </div>
   );
 }
