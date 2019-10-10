@@ -35,12 +35,8 @@ class FindRecipe extends React.Component {
     handleChange = (event) => {
         this.setState({[event.target.name]: [event.target.value]});
     }
-    // https://api.spoonacular.com/recipes/complexSearch
-    searchComplex = async () => {
-        // const recipes = localStorage.getItem('lastSearchedRecipes')
-        // console.log(recipes.length)
-        // if (recipes === null || recipes.length === 0) {
 
+    searchComplex = async () => {
         // make get request to recipe api to get info
             try {
                 const response = await Axios({
@@ -48,37 +44,26 @@ class FindRecipe extends React.Component {
                     // spoontaculars complex search endpoint to get details to make recipe cards (id, name, image)
                     url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&includeIngredients=${this.state.criteria[0]}&instructionsRequired=True`
                 })
-                // console.log(response)
-                // const recipeJSON = JSON.stringify(response.data)
-                // localStorage.setItem('lastSearchedRecipes', localStorage.getItem('lastSearchedRecipes') + recipeJSON)
 
-                // Map through 
                 let cardInfo = response.data.results
-                // sanity check for info is correct
-                console.log(cardInfo)
+                // if there were not results found send an alert to user
+                if (!cardInfo || cardInfo.length === 0) {
+                    return alert(`0 recipes found matching criteria, try widening search!`)
+                }
+                
                 // Sets the state with the recipe data needed for cards
                 this.setState({"recipeCards": cardInfo})
             } catch (error) {
-                alert(error)
                 console.log(error);
             }
-        // }
-        
-        // const recipeData = JSON.parse(recipes)
-        // console.log(recipeData)
-        // console.log(localStorage.getItem('lastSearchedRecipes'))
-        
     }
 
     getBulkRecipes = async () => {
-        let ids = []
-        this.state.recipes.map((recipe) => {
-            ids.push(recipe[1])
-        })
+        let ids = this.state.recipeCards.map((recipe) => recipe.id)
         try {
             const response = await Axios({
                 method: 'GET',
-                url: `https://api.spoonacular.com/recipes/informationBulk?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&ids=${this.state.recipes.id}`
+                url: `https://api.spoonacular.com/recipes/informationBulk?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&ids=${ids}`
             })
             console.log(response)
         } catch (error) {
