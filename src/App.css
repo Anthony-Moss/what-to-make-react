@@ -11,19 +11,32 @@
   color: #d6ed17;
 }
 
-.Home-header {
-  /* background-color: #282c34; */
-  /* min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white; */
+.Home-container .search-container .search-bar {
+  margin-bottom: 25px;
 }
 
 .Home-header h1 {
   margin-bottom: 16px;
+}
+
+.card-small {
+  margin: 75px 75px 75px 75px;
+  max-width: 312px;
+  max-height: 231px
+}
+
+.card-image img {
+  max-width: 312px;
+  max-height: 231px
+}
+
+.recipe-cards {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 85%;
+  justify-content: center;
+  justify-items: center;
 }
 
 .page-link {
@@ -47,3 +60,15 @@
 .page-link a {
   margin-right: 10px;
 }
+
+/* colors */
+/* linen (off-white) #EAE2D6 */
+/* Oyster #D5C3AA */
+/* Pewter (light brown) #867888 */
+/* Lemon Tea #E1B80D */
+
+/* Grey  616161 */
+/* Yellow  D6ED17*/
+/* white ffffff */
+
+
