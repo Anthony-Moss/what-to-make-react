@@ -22,8 +22,35 @@ class FindRecipe extends React.Component {
                 <h1>Search recipes</h1>
                 <div className='search-bar'>
 
-                    <input type='text' name="criteria" placeholder="Search by Ingredients" value={this.state.criteria} onChange={this.handleChange}></input>
+                    <input type='text' name="ingredients" placeholder="Search by Ingredients" value={this.state.criteria} onChange={this.handleChange}></input>
                     <input type="submit" value="Search" onClick={this.searchComplex}/>
+                    <p>Dietary</p>
+                    <form>
+                        <div className='radio'>
+                            <label>
+                                <input type='radio' name='vegan' value='vegan' checked={this.state.dietaryOption === 'vegan'} />
+                                Vegan
+                            </label>
+                        </div>
+                        <div className='radio'>
+                            <label>
+                                <input type='radio' name='vegetarian' value='vegetarian' checked={this.state.dietaryOption === 'vegetarian'} />
+                                Vegetarian
+                            </label>
+                        </div>
+                        <div className='radio'>
+                            <label>
+                                <input type='radio' name='keto' value='keto' checked={this.state.dietaryOption === 'keto'} />
+                                Keto
+                            </label>
+                        </div>
+                        <div className='radio'>
+                            <label>
+                                <input type='radio' name='Gluten Free' value='Gluten Free' checked={this.state.dietaryOption === 'Gluten Free'} />
+                                Gluten Free
+                            </label>
+                        </div>
+                    </form>
                 </div>
                 <div className='recipe-cards'>
                     {cards}
