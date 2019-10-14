@@ -8,7 +8,8 @@ class FindRecipe extends React.Component {
 
         this.state = {
             criteria: [],
-            recipeCards: []
+            recipeCards: [],
+            dietaryOption: ''
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -23,34 +24,34 @@ class FindRecipe extends React.Component {
                 <div className='search-bar'>
 
                     <input type='text' name="ingredients" placeholder="Search by Ingredients" value={this.state.criteria} onChange={this.handleChange}></input>
-                    <input type="submit" value="Search" onClick={this.searchComplex}/>
                     <p>Dietary</p>
                     <form>
                         <div className='radio'>
                             <label>
-                                <input type='radio' name='vegan' value='vegan' checked={this.state.dietaryOption === 'vegan'} />
+                                <input type='radio' name='vegan' value='vegan' onChange={this.setDiet} checked={this.state.dietaryOption === 'vegan'} />
                                 Vegan
                             </label>
                         </div>
                         <div className='radio'>
                             <label>
-                                <input type='radio' name='vegetarian' value='vegetarian' checked={this.state.dietaryOption === 'vegetarian'} />
+                                <input type='radio' name='vegetarian' value='vegetarian' onChange={this.setDiet} checked={this.state.dietaryOption === 'vegetarian'} />
                                 Vegetarian
                             </label>
                         </div>
                         <div className='radio'>
                             <label>
-                                <input type='radio' name='keto' value='keto' checked={this.state.dietaryOption === 'keto'} />
+                                <input type='radio' name='keto' value='keto' onChange={this.setDiet} checked={this.state.dietaryOption === 'keto'} />
                                 Keto
                             </label>
                         </div>
                         <div className='radio'>
                             <label>
-                                <input type='radio' name='Gluten Free' value='Gluten Free' checked={this.state.dietaryOption === 'Gluten Free'} />
+                                <input type='radio' name='Gluten Free' value='Gluten Free' onChange={this.setDiet} checked={this.state.dietaryOption === 'Gluten Free'}/>
                                 Gluten Free
-                            </label>
+                            </label>ß
                         </div>
                     </form>
+                    <input type="submit" value="Search" onClick={this.searchComplex}/>
                 </div>
                 <div className='recipe-cards'>
                     {cards}
@@ -83,6 +84,11 @@ class FindRecipe extends React.Component {
             } catch (error) {
                 console.log(error);
             }
+    }
+
+    setDiet = (event) => {
+        console.log(event.target)
+        this.setState({'dietaryOption': event.target.name})
     }
 
     getBulkRecipes = async () => {
