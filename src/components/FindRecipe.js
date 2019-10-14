@@ -7,7 +7,7 @@ class FindRecipe extends React.Component {
         super(props)
 
         this.state = {
-            criteria: [],
+            ingredients: [],
             recipeCards: [],
             dietaryOption: ''
         }
@@ -23,9 +23,10 @@ class FindRecipe extends React.Component {
                 <h1>Search recipes</h1>
                 <div className='search-bar'>
 
-                    <input type='text' name="ingredients" placeholder="Search by Ingredients" value={this.state.criteria} onChange={this.handleChange}></input>
-                    <p>Dietary</p>
+                    <input type='text' name="ingredients" placeholder="Search by Ingredients" value={this.state.ingredients} onChange={this.handleChange}></input>
+                    
                     <form>
+                    <h4>Dietary Options</h4>
                         <div className='radio'>
                             <label>
                                 <input type='radio' name='vegan' value='vegan' onChange={this.setDiet} checked={this.state.dietaryOption === 'vegan'} />
@@ -48,7 +49,7 @@ class FindRecipe extends React.Component {
                             <label>
                                 <input type='radio' name='Gluten Free' value='Gluten Free' onChange={this.setDiet} checked={this.state.dietaryOption === 'Gluten Free'}/>
                                 Gluten Free
-                            </label>ß
+                            </label>
                         </div>
                     </form>
                     <input type="submit" value="Search" onClick={this.searchComplex}/>
@@ -70,13 +71,13 @@ class FindRecipe extends React.Component {
                 const response = await Axios({
                     method: 'GET',
                     // spoontaculars complex search endpoint to get details to make recipe cards (id, name, image)
-                    url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&includeIngredients=${this.state.criteria[0]}&instructionsRequired=True`
+                    url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&includeIngredients=${this.state.ingredients[0]}&diet${this.state.dietaryOption}&instructionsRequired=True`
                 })
 
                 let cardInfo = response.data.results
                 // if there were not results found send an alert to user
                 if (!cardInfo || cardInfo.length === 0) {
-                    return alert(`0 recipes found matching criteria, try widening search!`)
+                    return alert(`0 recipes found matching ingredients, try widening search!`)
                 }
                 
                 // Sets the state with the recipe data needed for cards
