@@ -6,12 +6,13 @@ class RecipeCard extends React.Component {
         super(props)
 
         this.state = {
-            id: this.props.id,
+            id: props.id,
             title: props.title,
             image: props.image,
             instructions: [],
             ingredients: [],
-            dietaryOptions: []
+            dietaryOptions: { vegan: '', vegetarian: '', ketogenic: '', glutenFree: ''},
+            source: ''
         }
     }
 
@@ -39,6 +40,13 @@ class RecipeCard extends React.Component {
             })
             console.log(response.data)
             let { analyzedInstructions, extendedIngredients, instructions, sourceUrl, vegan, vegetarian, ketogenic, glutenFree } = response.data
+
+            this.setState({
+                instructions: analyzedInstructions,
+                ingredients: extendedIngredients,
+                source: sourceUrl,
+                dietaryOptions: { vegan, vegetarian, ketogenic, glutenFree }
+            })
 
         } catch (error) {
             console.log(error)
