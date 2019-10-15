@@ -18,11 +18,11 @@ class FindRecipe extends React.Component {
         let cards = this.state.recipeCards.map((recipe, i) => {
             return <RecipeCard key={recipe.id} id={recipe.id} title={recipe.title} image={recipe.image} />
         })
+
         return (
             <div className='search-container'>
                 <h1>Search recipes</h1>
                 <div className='search-bar'>
-
                     <input type='text' name="ingredients" placeholder="Search by Ingredients" value={this.state.ingredients} onChange={this.handleChange}></input>
                     
                     <form>
@@ -33,18 +33,21 @@ class FindRecipe extends React.Component {
                                 Vegan
                             </label>
                         </div>
+
                         <div className='radio'>
                             <label>
                                 <input type='radio' name='vegetarian' value='vegetarian' onChange={this.setDiet} checked={this.state.dietaryOption === 'vegetarian'} />
                                 Vegetarian
                             </label>
                         </div>
+
                         <div className='radio'>
                             <label>
                                 <input type='radio' name='keto' value='keto' onChange={this.setDiet} checked={this.state.dietaryOption === 'keto'} />
                                 Keto
                             </label>
                         </div>
+
                         <div className='radio'>
                             <label>
                                 <input type='radio' name='Gluten Free' value='Gluten Free' onChange={this.setDiet} checked={this.state.dietaryOption === 'Gluten Free'}/>
@@ -52,8 +55,10 @@ class FindRecipe extends React.Component {
                             </label>
                         </div>
                     </form>
+
                     <input type="submit" value="Search" onClick={this.searchComplex}/>
                 </div>
+
                 <div className='recipe-cards'>
                     {cards}
                 </div>
@@ -94,7 +99,7 @@ class FindRecipe extends React.Component {
 
 
     
-
+    // Do not use this unless know that all recipes want to be searched as it is 1pt per recipe not 1 per call
     // getBulkRecipes = async () => {
     //     let ids = this.state.recipeCards.map((recipe) => recipe.id)
     //     try {
