@@ -22,7 +22,7 @@ class SimpleRecipeSearch extends Component {
                 <h1>Search recipes</h1>
                 <div className='search-bar'>
 
-                    <input type='text' name="criteria" placeholder="Search Recipes" value={this.state.ingredients} onChange={this.handleChange}></input>
+                    <input type='text' name="criteria" placeholder="Search Recipes" value={this.state.criteria} onChange={this.handleChange}></input>
                     
                     <input type="submit" value="Search" onClick={this.simpleSearch}/>
                 </div>
@@ -60,7 +60,6 @@ class SimpleRecipeSearch extends Component {
                 console.log(error);
             }
     }
-
 }
 
 export default SimpleRecipeSearch
