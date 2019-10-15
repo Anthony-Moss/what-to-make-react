@@ -18,8 +18,8 @@ function App() {
       
       </header>
       {/* <HomePage /> */}
-      {/* <FindRecipe /> */}
-      <SimpleRecipeSearch />
+      <FindRecipe />
+      {/* <SimpleRecipeSearch /> */}
       <RandomRecipe /> 
     </div>
   );
