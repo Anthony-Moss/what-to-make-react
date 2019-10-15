@@ -1,20 +1,23 @@
 import React from 'react';
+const Axios = require('axios');
 
 class RecipeCard extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: props.id,
+            id: this.props.id,
             title: props.title,
-            image: props.image
+            image: props.image,
+            instructions: [],
+            ingredients: [],
+            dietaryOptions: []
         }
     }
 
     render() {
         return (
-            // <div className='col s-two'>
-                <div className='card-small'>
+                <div className='card-small' id={this.props.id} onClick={this.getRecipeDetails}>
                     <div className='card-image'>
                         <img src={this.props.image} />
                     </div>
@@ -22,8 +25,24 @@ class RecipeCard extends React.Component {
                         <p>{this.props.title}</p>
                     </div>
                 </div>
-            // </div>
         )
+    }
+
+    getRecipeDetails = async (event) => {
+        let idStr = this.state.id.toString()
+        // console.log(idStr)
+        // let id = document.getElementById(idStr.toString())
+        try {
+            const response = await Axios({
+                method: 'GET',
+                url: `https://api.spoonacular.com/recipes/${idStr}/information?apiKey=${process.env.REACT_APP_SPOON_API_KEY}`
+            })
+            console.log(response.data)
+            let { analyzedInstructions, extendedIngredients, instructions, sourceUrl, vegan, vegetarian, ketogenic, glutenFree } = response.data
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
