@@ -71,7 +71,7 @@ class FindRecipe extends React.Component {
                 const response = await Axios({
                     method: 'GET',
                     // spoontaculars complex search endpoint to get details to make recipe cards (id, name, image)
-                    url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&includeIngredients=${this.state.ingredients[0]}&diet${this.state.dietaryOption}&instructionsRequired=True`
+                    url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&includeIngredients=${this.state.ingredients[0]}&diet=${this.state.dietaryOption}&instructionsRequired=True`
                 })
 
                 let cardInfo = response.data.results
@@ -92,18 +92,21 @@ class FindRecipe extends React.Component {
         this.setState({'dietaryOption': event.target.name})
     }
 
-    getBulkRecipes = async () => {
-        let ids = this.state.recipeCards.map((recipe) => recipe.id)
-        try {
-            const response = await Axios({
-                method: 'GET',
-                url: `https://api.spoonacular.com/recipes/informationBulk?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&ids=${ids}`
-            })
-            console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
-    }  
+
+    
+
+    // getBulkRecipes = async () => {
+    //     let ids = this.state.recipeCards.map((recipe) => recipe.id)
+    //     try {
+    //         const response = await Axios({
+    //             method: 'GET',
+    //             url: `https://api.spoonacular.com/recipes/informationBulk?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&ids=${ids}`
+    //         })
+    //         console.log(response)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }  
 }
 
 export default FindRecipe
