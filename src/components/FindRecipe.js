@@ -7,6 +7,7 @@ class FindRecipe extends React.Component {
         super(props)
 
         this.state = {
+            query: [],
             ingredients: [],
             recipeCards: [],
             dietaryOption: ''
@@ -21,10 +22,13 @@ class FindRecipe extends React.Component {
 
         return (
             <div className='search-container'>
-                <h1>Search recipes</h1>
                 <div className='search-bar'>
-                    <input type='text' name="ingredients" placeholder="Search by Ingredients" value={this.state.ingredients} onChange={this.handleChange}></input>
-                    
+                    <div className='user-input'>
+                        <h4>Find Recipes</h4>
+                        <input type='text' name="query" placeholder="Chicken Salad, Pho" value={this.state.query} onChange={this.handleChange}></input>
+                        <h4>Search by Ingredient</h4>
+                        <input type='text' name="ingredients" placeholder="Eggs, bacon, milk, onion" value={this.state.ingredients} onChange={this.handleChange}></input>
+                    </div>
                     <form>
                     <h4>Dietary Options</h4>
                         <div className='radio'>
@@ -76,7 +80,7 @@ class FindRecipe extends React.Component {
                 const response = await Axios({
                     method: 'GET',
                     // spoontaculars complex search endpoint to get details to make recipe cards (id, name, image)
-                    url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&includeIngredients=${this.state.ingredients[0]}&diet=${this.state.dietaryOption}&instructionsRequired=True`
+                    url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&query=${this.state.query}&includeIngredients=${this.state.ingredients[0]}&diet=${this.state.dietaryOption}&instructionsRequired=True`
                 })
 
                 let cardInfo = response.data.results
