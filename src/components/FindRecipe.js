@@ -7,7 +7,7 @@ class FindRecipe extends React.Component {
         super(props)
 
         this.state = {
-            query: [],
+            query: '',
             ingredients: [],
             recipeCards: [],
             dietaryOption: ''
