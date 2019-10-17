@@ -39,6 +39,10 @@
   justify-items: center;
 }
 
+.user-input h4{
+  margin: auto;
+}
+
 .page-link {
   color: #D85A7FFF;
 }
