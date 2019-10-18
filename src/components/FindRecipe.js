@@ -10,7 +10,8 @@ class FindRecipe extends React.Component {
             query: '',
             ingredients: [],
             recipeCards: [],
-            dietaryOption: ''
+            dietaryOption: '',
+            cuisineOptions: []
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -18,6 +19,18 @@ class FindRecipe extends React.Component {
     render() {
         let cards = this.state.recipeCards.map((recipe, i) => {
             return <RecipeCard key={recipe.id} id={recipe.id} title={recipe.title} image={recipe.image} />
+        })
+
+        let cuisineTypes = ['American', 'Cajun', 'Caribbean', 'Chinese', 'French', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Latin American', 'Mediterranean', 'Mexican', 'Thai', 'Vietnamese']
+        let cuisineButtons = cuisineTypes.map((cuisine, i) => {
+            return (
+            <div className='checkbox'>
+                <label>
+                    <input type='checkbox' key={i} name={cuisine} value={cuisine} onChange={this.setCuisine}  />
+                    {cuisine}
+                </label>
+            </div> 
+            )
         })
 
         return (
@@ -57,6 +70,10 @@ class FindRecipe extends React.Component {
                                 <input type='radio' name='Gluten Free' value='Gluten Free' onChange={this.setDiet} checked={this.state.dietaryOption === 'Gluten Free'}/>
                                 Gluten Free
                             </label>
+                        </div>
+                        <div className='cuisineTypes'>
+                            <p>Cuisines</p>
+                            {cuisineButtons}
                         </div>
                     </form>
 
@@ -101,6 +118,26 @@ class FindRecipe extends React.Component {
         this.setState({'dietaryOption': event.target.name})
     }
 
+    setCuisine = (event) => {
+        // the current cuisine options
+        let current = this.state.cuisineOptions
+
+        // if the cuisineOptions array doesnt include the selected option we need to add it
+        if (!current.includes(event.target.name)) {
+            // create a new variable for the new options array by adding the target value to the array
+            let newOptions = this.state.cuisineOptions.concat(event.target.name)
+            // sets the state with the newOptions var that now contains an array with the new option
+            this.setState({'cuisineOptions': newOptions})
+        // if the array does contain the option we must remove it
+        } else {
+            // find the index using indexOf
+            let index = current.indexOf(event.target.name)
+            // remove the option from the aray using splice
+            current.splice(index, 1)
+            // set the state to the spliced array which no longer has that option
+            this.setState({'cuisineOptions': current})
+        }
+    }
 
     
     // Do not use this unless know that all recipes want to be searched as it is 1pt per recipe not 1 per call
@@ -119,3 +156,18 @@ class FindRecipe extends React.Component {
 }
 
 export default FindRecipe
+
+
+
+
+
+// let dietOptions = diets.map((diet, i) => {
+//     return (
+//     <div className='radio'>
+//         <label>
+//             <input type='radio' key={i} name={diet} value={diet} onChange={this.setDiet} checked={this.state.dietaryOption === {diet}} />
+//             {diet}
+//         </label>
+//     </div> 
+//     )
+// })
