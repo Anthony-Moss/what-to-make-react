@@ -21,15 +21,27 @@ class FindRecipe extends React.Component {
             return <RecipeCard key={recipe.id} id={recipe.id} title={recipe.title} image={recipe.image} />
         })
 
+        // let dietOptions = ['vegan', 'vegetarian', 'keto', 'gluten free']
+        // let dietButtons = dietOptions.map((diet, i) => {
+        //     return (
+        //         <div className='radio'>
+        //             <label>
+        //                 <input type='radio' name={diet} value={diet} onChange={this.setDiet} checked={this.state.dietaryOption === {diet}} />
+        //                 {diet}
+        //             </label>
+        //         </div>
+        //     )
+        // })
+
         let cuisineTypes = ['American', 'Cajun', 'Caribbean', 'Chinese', 'French', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Latin American', 'Mediterranean', 'Mexican', 'Thai', 'Vietnamese']
         let cuisineButtons = cuisineTypes.map((cuisine, i) => {
             return (
-            <div className='checkbox'>
-                <label>
-                    <input type='checkbox' key={i} name={cuisine} value={cuisine} onChange={this.setCuisine}  />
-                    {cuisine}
-                </label>
-            </div> 
+                <div className='checkbox'>
+                    <label>
+                        <input type='checkbox' key={i} name={cuisine} value={cuisine} onChange={this.setCuisine}  />
+                        {cuisine}
+                    </label>
+                </div> 
             )
         })
 
@@ -71,6 +83,7 @@ class FindRecipe extends React.Component {
                                 Gluten Free
                             </label>
                         </div>
+                        
                         <div className='cuisineTypes'>
                             <p>Cuisines</p>
                             {cuisineButtons}
@@ -114,7 +127,7 @@ class FindRecipe extends React.Component {
     }
 
     setDiet = (event) => {
-        console.log(event.target)
+        // console.log(event.target)
         this.setState({'dietaryOption': event.target.name})
     }
 
