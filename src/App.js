@@ -6,6 +6,7 @@ import HomePage from './components/HomePage';
 import RandomRecipe from './components/RandomRecipe';
 import SimpleRecipeSearch from './components/SimpleRecipeSearch';
 import RecipeBook from './components/RecipeBook';
+import Fridge from './components/Fridge';
 
 function App() {
   let favorites = localStorage.getItem('favoriteRecipes')
@@ -25,6 +26,7 @@ function App() {
       {/* <SimpleRecipeSearch /> */}
       <RandomRecipe /> 
       <RecipeBook favorites={favorites} toMake={toMake} allRecipes={allRecipes} />
+      <Fridge />
     </div>
   );
 }
