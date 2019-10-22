@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { interfaceDeclaration } from '@babel/types';
 
 class Fridge extends Component {
     constructor(props) {
@@ -28,16 +27,22 @@ class Fridge extends Component {
             outline: '1px solid green'
         };
 
-        let meats = this.state.ingredients.meats.map((ing, i) => {
+        let makeIngContainer = (ing, i) => {
             return (
                 <div key={i}>
                     <p style={pStyle}>{ing}</p>
                 </div>
             )
+        }
+        let meats = this.state.ingredients.meats.map((ing, i) => {
+            return (
+                makeIngContainer(ing, i)
+            )
         });
 
         return (
-            <div className="fridge-contents" style={divStyle}>
+            <div className="fridge-contents">
+                    <h3>Meats</h3>
                 <div className='meats' style={divStyle}>
                     {meats}
                 </div>
