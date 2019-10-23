@@ -21,22 +21,22 @@ class FindRecipe extends React.Component {
             return <RecipeCard key={recipe.id} id={recipe.id} title={recipe.title} image={recipe.image} />
         })
 
-        // let dietOptions = ['vegan', 'vegetarian', 'keto', 'gluten free']
-        // let dietButtons = dietOptions.map((diet, i) => {
-        //     return (
-        //         <div className='radio'>
-        //             <label>
-        //                 <input type='radio' name={diet} value={diet} onChange={this.setDiet} checked={this.state.dietaryOption === {diet}} />
-        //                 {diet}
-        //             </label>
-        //         </div>
-        //     )
-        // })
+        let dietOptions = ['vegan', 'vegetarian', 'keto', 'gluten free']
+        let dietButtons = dietOptions.map((diet, i) => {
+            return (
+                <div className='radio' key={i}>
+                    <label>
+                        <input type='radio' name={diet} value={diet} onChange={this.setDiet} checked={this.state.dietaryOption === diet} key={i} />
+                        {diet}
+                    </label>
+                </div>
+            )
+        })
 
         let cuisineTypes = ['American', 'Cajun', 'Caribbean', 'Chinese', 'French', 'Greek', 'Indian', 'Italian', 'Japanese', 'Korean', 'Latin American', 'Mediterranean', 'Mexican', 'Thai', 'Vietnamese']
         let cuisineButtons = cuisineTypes.map((cuisine, i) => {
             return (
-                <div className='checkbox'>
+                <div className='checkbox' key={i}>
                     <label>
                         <input type='checkbox' key={i} name={cuisine} value={cuisine} onChange={this.setCuisine}  />
                         {cuisine}
@@ -56,34 +56,7 @@ class FindRecipe extends React.Component {
                     </div>
                     <form>
                     <h4>Dietary Options</h4>
-                        <div className='radio'>
-                            <label>
-                                <input type='radio' name='vegan' value='vegan' onChange={this.setDiet} checked={this.state.dietaryOption === 'vegan'} />
-                                Vegan
-                            </label>
-                        </div>
-
-                        <div className='radio'>
-                            <label>
-                                <input type='radio' name='vegetarian' value='vegetarian' onChange={this.setDiet} checked={this.state.dietaryOption === 'vegetarian'} />
-                                Vegetarian
-                            </label>
-                        </div>
-
-                        <div className='radio'>
-                            <label>
-                                <input type='radio' name='keto' value='keto' onChange={this.setDiet} checked={this.state.dietaryOption === 'keto'} />
-                                Keto
-                            </label>
-                        </div>
-
-                        <div className='radio'>
-                            <label>
-                                <input type='radio' name='Gluten Free' value='Gluten Free' onChange={this.setDiet} checked={this.state.dietaryOption === 'Gluten Free'}/>
-                                Gluten Free
-                            </label>
-                        </div>
-                        
+                        {dietButtons}
                         <div className='cuisineTypes'>
                             <p>Cuisines</p>
                             {cuisineButtons}
