@@ -9,7 +9,7 @@ class RecipeBook extends Component {
         this.state = {
             favorites: [props.favorites],
             toMake: [props.toMake],
-            all: [props.all]
+            all: [props.allRecipes]
         }
         
     }
@@ -21,7 +21,7 @@ class RecipeBook extends Component {
             } else {
                 return (
                 <div key={i}>
-                    <p>No Favorites yet!</p>
+                    <p>No favorites yet!</p>
                 </div>
                 )
             }
@@ -31,12 +31,22 @@ class RecipeBook extends Component {
         //     return <RecipeCard key={recipe.id} id={recipe.id} title={recipe.title} image={recipe.urls} />
         // })
 
-        // let allRecipes = this.state.all.map((recipe) => {
-        //     return <RecipeCard key={recipe.id} id={recipe.id} title={recipe.title} image={recipe.urls} />
-        // })
+        let allRecipes = this.state.all.map((recipe, i) => {
+            if (recipe !== null) {
+                return <RecipeCard key={recipe.id} id={recipe.id} title={recipe.title} image={recipe.urls} />
+            } else {
+                return (
+                <div key={i}>
+                    <p>No recipes added yet!</p>
+                </div>
+                )
+            }
+        })
 
         return (
             <div>
+                <h3>My Recipe Book</h3>
+                {allRecipes}
                 {favorites}
             </div>
         )
