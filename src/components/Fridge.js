@@ -21,10 +21,11 @@ class Fridge extends Component {
         const stIng = this.state.ingredients;
 
         const divStyle = {
-            display: 'flex',
+            display: 'inline-flex',
+            'text-align': 'center'
         };
         const pStyle = {
-            display: 'inline-flex',
+            display: 'flex',
             padding: '5px',
             outline: '1px solid green'
         };
@@ -36,8 +37,58 @@ class Fridge extends Component {
                 </div>
             )
         }
+        // let catArr= Object.keys(stIng)
+        // console.log(catArr)
+
+        // let catagories = catArr.map((cat) => {
+        //     cat = this.state.ingredients[cat]
+        //     console.log(cat)
+        //     cat.map((ing, i) => {
+        //         return (
+        //             <div key={i}>
+        //                 <p style={pStyle}>{ing}</p>
+        //             </div>
+        //         )
+        //     })
+        // })
 
         let meats = stIng.meats.map((ing, i) => {
+            return (
+                makeIngContainer(ing, i)
+            )
+        });
+
+        let seafood = stIng.seafood.map((ing, i) => {
+            return (
+                makeIngContainer(ing, i)
+            )
+        });
+
+        let grains = stIng.grains.map((ing, i) => {
+            return (
+                makeIngContainer(ing, i)
+            )
+        });
+
+        let vegetables = stIng.vegetables.map((ing, i) => {
+            return (
+                makeIngContainer(ing, i)
+            )
+        });
+
+        let fruits = stIng.fruits.map((ing, i) => {
+            return (
+                makeIngContainer(ing, i)
+            )
+        });
+
+        let dairy = stIng.dairy.map((ing, i) => {
+            return (
+                makeIngContainer(ing, i)
+            )
+        });
+
+        let spices = stIng.spices.map((ing, i) => {
             return (
                 makeIngContainer(ing, i)
             )
@@ -48,6 +99,36 @@ class Fridge extends Component {
                 <h3>Meats</h3>
                 <div className='meats' style={divStyle}>
                     {meats}
+                </div>
+
+                <h3>seafood</h3>
+                <div className='seafood' style={divStyle}>
+                    {seafood}
+                </div>
+
+                <h3>grains</h3>
+                <div className='grains' style={divStyle}>
+                    {grains}
+                </div>
+
+                <h3>vegetables</h3>
+                <div className='vegetables' style={divStyle}>
+                    {vegetables}
+                </div>
+
+                <h3>fruits</h3>
+                <div className='fruits' style={divStyle}>
+                    {fruits}
+                </div>
+
+                <h3>dairy</h3>
+                <div className='dairy' style={divStyle}>
+                    {dairy}
+                </div>
+
+                <h3>spices</h3>
+                <div className='spices' style={divStyle}>
+                    {spices}
                 </div>
             </div>
         )
