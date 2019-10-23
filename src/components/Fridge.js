@@ -32,7 +32,7 @@ class Fridge extends Component {
 
         let makeIngContainer = (ing, i) => {
             return (
-                <div key={i}>
+                <div key={i} className={ing} style={divStyle}>
                     <p style={pStyle}>{ing}</p>
                 </div>
             )
@@ -97,39 +97,19 @@ class Fridge extends Component {
         return (
             <div className="fridge-contents">
                 <h3>Meats</h3>
-                <div className='meats' style={divStyle}>
                     {meats}
-                </div>
-
                 <h3>seafood</h3>
-                <div className='seafood' style={divStyle}>
                     {seafood}
-                </div>
-
                 <h3>grains</h3>
-                <div className='grains' style={divStyle}>
                     {grains}
-                </div>
-
                 <h3>vegetables</h3>
-                <div className='vegetables' style={divStyle}>
                     {vegetables}
-                </div>
-
                 <h3>fruits</h3>
-                <div className='fruits' style={divStyle}>
                     {fruits}
-                </div>
-
                 <h3>dairy</h3>
-                <div className='dairy' style={divStyle}>
                     {dairy}
-                </div>
-
                 <h3>spices</h3>
-                <div className='spices' style={divStyle}>
                     {spices}
-                </div>
             </div>
         )
     }
