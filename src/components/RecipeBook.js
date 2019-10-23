@@ -15,15 +15,16 @@ class RecipeBook extends Component {
     }
 
     render() {
-        let favorites = this.state.favorites.map((recipe) => {
+        let favorites = this.state.favorites.map((recipe, i) => {
             if (recipe !== null) {
                 return <RecipeCard key={recipe.id} id={recipe.id} title={recipe.title} image={recipe.urls} />
             } else {
-                return <div>
+                return (
+                <div key={i}>
                     <p>No Favorites yet!</p>
                 </div>
+                )
             }
-
         })
 
         // let toMake = this.state.toMake.map((recipe) => {
