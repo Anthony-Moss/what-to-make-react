@@ -18,6 +18,8 @@ class Fridge extends Component {
     }
 
     render() {
+        const stIng = this.state.ingredients;
+
         const divStyle = {
             display: 'flex',
         };
@@ -34,7 +36,8 @@ class Fridge extends Component {
                 </div>
             )
         }
-        let meats = this.state.ingredients.meats.map((ing, i) => {
+
+        let meats = stIng.meats.map((ing, i) => {
             return (
                 makeIngContainer(ing, i)
             )
@@ -42,7 +45,7 @@ class Fridge extends Component {
 
         return (
             <div className="fridge-contents">
-                    <h3>Meats</h3>
+                <h3>Meats</h3>
                 <div className='meats' style={divStyle}>
                     {meats}
                 </div>
